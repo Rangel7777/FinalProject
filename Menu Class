@@ -1,0 +1,159 @@
+package bank;
+
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Scanner;
+
+public class Menu extends Account{
+int input;
+	Scanner menuinfo= new Scanner(System.in);
+	DecimalFormat moneyFormat = new DecimalFormat("'$'###,##0.00");
+	
+	HashMap<Integer, Integer> data= new HashMap<Integer,Integer>();
+	
+	public void getLogin() throws IOException
+	{
+		int x= 1;
+		
+		do {
+			
+			try {
+							data.put(123456789, 1234);
+								data.put(123456780, 1230);
+				
+				System.out.println("Welcome to your online banking");
+					System.out.println("Please enter your Account Number:");
+						setCustomerNum(menuinfo.nextInt());
+				
+				System.out.println("Enter Your PIN Account Number");
+					setPinNumber(menuinfo.nextInt());
+				
+			}
+			
+				catch(Exception e)
+			{
+					System.out.println("You have entered invalid inputs.");
+						x=2;
+			}
+			
+			for (Entry<Integer, Integer> entry : data.entrySet())
+			{
+				if (entry.getKey()== getCustomerNum()&& entry.getValue()==getPinNumber())
+				{
+					getAccountType();
+				}
+			}
+			System.out.println("Wrong Customer Number or Pin Number");
+		}while (x==1);
+	}
+	
+	
+	public void getAccountType() {
+		System.out.println("Select what account you want to reach: ");
+			System.out.println("Enter 1 to access your Checking Account");
+				System.out.println("Enter 2 to access your Saving Account");
+					System.out.println("Enter 3 to Exit");
+						System.out.print("Enter your input here:");
+
+		input = menuinfo.nextInt();
+
+		switch (input) {
+					case 1:
+						getChecking();
+							break;
+
+					case 2:
+						getSaving();
+							break;
+
+					case 3:
+						System.out.println("Thank You for using this ATM, bye.");
+							break;
+
+		default:
+			System.out.println("\n" + "Your input was invalid the program will now end." + "\n");
+			getAccountType();
+		}
+	}
+
+	/* Display Checking Account Menu with selections */
+
+	
+	/* Display Saving Account Menu with selections */
+
+	public void getSaving() {
+		System.out.println("Saving Account: ");
+		System.out.println("Enter 1 to View Balance");
+		System.out.println("Enter 2 to Withdraw Money");
+		System.out.println("Enter 3 to Deposit Money");
+		System.out.println("Enter 4  to Exit The Program");
+		System.out.print("Choice: ");
+
+		input = menuinfo.nextInt();
+
+		switch (input) {
+		case 1:
+			System.out.println("Your Saving Account Balance is: " + moneyFormat.format(getSavingBalance()) + "\n");
+			getAccountType();
+			break;
+
+		case 2:
+			getSavingWidthdrawInput();
+			getAccountType();
+			break;
+
+		case 3:
+			calcSavingDeposit(input);
+			getAccountType();
+			break;
+
+		case 4:
+			System.out.println("Thank You for using this ATM, have a nice day.");
+			break;
+
+		default:
+			System.out.println("\n" + "Your input was invalid." + "\n");
+			getSaving();
+		}
+	}
+
+
+	public void getChecking() {
+		System.out.println("Checking Account: ");
+		System.out.println("Enter 1 to View Balance");
+		System.out.println("Enter 2 to Withdraw Funds");
+		System.out.println("Enter 3 to Deposit Funds");
+		System.out.println("Enter 4 to Exit");
+		System.out.print("Choice: ");
+
+		input = menuinfo.nextInt();
+
+		switch (input) {
+						case 1:
+							System.out.println("Checking Account Balance: " + moneyFormat.format(getCheckingBalance()) + "\n");
+								getAccountType();
+									break;
+
+						case 2:
+							getCheckingWidthdrawInput();
+								getAccountType();
+									break;
+
+						case 3:
+							getCheckingDepositInput();
+								getAccountType();
+									break;
+
+						case 4:
+							System.out.println("Thank You for using this ATM, bye.");
+								break;
+
+		default:
+			System.out.println("\n" + "Your input was invalid, the program will now end" + "\n");
+			getChecking();
+		}
+	}
+	
+}
