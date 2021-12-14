@@ -1,0 +1,26 @@
+package bank;
+
+import java.io.IOException;
+
+//Program Name: Online Banking 
+//Author: Cristian Rangel Aranda
+//Last Modified: 12/09/21
+//Purpose: This program is a online mobile banking application. You will be able to deposit, withdrawal, and check your balance from your account. 
+
+
+
+//Your Account Number will be 123456789
+//Your Account Number PIN will be 1234
+
+public class User extends Menu {
+	public static void main(String[] args) throws IOException
+	
+	
+	{
+		
+		
+		//Menu will be brought up 
+		Menu Bank = new Menu();
+		
+		Bank.getLogin();
+		
