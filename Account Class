@@ -1,0 +1,184 @@
+package bank;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+abstract public class Account {
+	Scanner input= new Scanner(System.in);
+	DecimalFormat moneyFormat = new DecimalFormat("'$' ###,##0.00");
+	private int customerNum;
+	private int pinNumber;
+	private double checkingBalance=0;
+	private double savingBalance=0;
+	
+	//User will be asked to withdraw money and will check if the have enough to withdraw that amount
+	
+	public void getCheckingWidthdrawInput()
+	{
+				System.out.println("Checking Account Balance is :$"+ moneyFormat.format(checkingBalance));
+				System.out.println("How much money would you like to withdraw from your account?");
+					double amount = input.nextDouble();
+		
+	if ((checkingBalance-amount)>=0)
+		{
+			calcCheckingWithdraw(amount);
+					System.out.println("New Balance is :$"+moneyFormat.format(checkingBalance));
+		}
+		
+	else
+	{
+		System.out.println("Sorry you do not have enough to withdraw this much from your account");
+		
+	}
+	}
+
+	
+//User will be asked to withdraw money and will check if the have enough to withdraw that amount
+
+	public void getSavingWidthdrawInput()
+	{
+		System.out.println("Checking Account Balance is :$"+ moneyFormat.format(savingBalance));
+			System.out.println("How much money would you like to withdraw from your account?");
+		double amount = input.nextDouble();
+		
+	if ((savingBalance-amount)>=0)
+		{
+				calcSavingWithdraw(amount);
+					System.out.println("New Balance is :$"+moneyFormat.format(savingBalance));
+		}
+		
+	else
+	{
+		System.out.println("Sorry you do not have enough to withdraw this much from your account");
+		
+	}
+	}
+	
+	
+	public void getCheckingDepositInput()
+	{
+		System.out.println("Current Checking Account Balance: $"+checkingBalance);
+			System.out.println("How much money would you like to deposit?");
+				double amount=input.nextDouble();
+		
+		if((checkingBalance+amount)>=0)
+		{
+			calcCheckingDeposit(amount);
+				System.out.println("Your New Balance is :$"+moneyFormat.format(checkingBalance));
+			
+		}
+
+		else
+		{
+			System.out.println("You have entered a negative number.");
+			
+		}
+
+	}
+	
+	
+	public void getsavingDepositInput()
+	{
+		System.out.println("Current Checking Account Balance: $"+savingBalance);
+		System.out.println("How much money would you like to deposit?");
+		double amount=input.nextDouble();
+		
+		if((checkingBalance+amount)>=0)
+		{
+			calcCheckingDeposit(amount);
+			System.out.println("Your New Balance is :$"+moneyFormat.format(savingBalance));
+			
+		}
+
+		else
+		{
+			System.out.println("You have entered a negative number.");
+			
+		}
+
+	}
+	
+	//Will set the new pin Number of the customer
+	public int setPinNumber(int pinNumber)
+	{
+		this.pinNumber=pinNumber;
+		return pinNumber;
+	}
+	//Will get the new pin number of the customer
+	public int getPinNumber()
+	{
+		return pinNumber;
+	}
+	
+	
+	
+	//Will get the balance of checking account
+	public double getCheckingBalance()
+	{
+		return checkingBalance;
+	}
+	//will get the balance of saving account
+	public double getSavingBalance()
+	{
+		return savingBalance;
+	}
+	//will allow the user to withdraw money from the account from checking
+	public double calcCheckingWithdraw(double amount)
+	{
+		checkingBalance=(checkingBalance-amount);
+		return checkingBalance;
+	}
+	//Will allow the user to withdraw money from the account from savings
+	public double calcSavingWithdraw( double amount)
+	{
+		savingBalance=( savingBalance-amount);
+		return savingBalance;
+	}
+	//Will allow the user to deposit money in the checking account
+	public double calcCheckingDeposit(double deposit)
+	{
+		checkingBalance=(checkingBalance+deposit);
+		return checkingBalance;
+	}
+	//will allow the user to deposit money into the savings account 
+	public double calcSavingDeposit(double deposit)
+	{
+		savingBalance=(savingBalance+ deposit);
+		return savingBalance;
+	}
+	
+	//This will set the customer account number
+	public int setCustomerNum(int customerNum)
+	{
+	
+		this.customerNum = customerNum;
+		return customerNum;
+				
+	}			
+	
+	//This will get the customers account number
+	public int getCustomerNum()
+	{
+		return customerNum;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
